@@ -1,0 +1,241 @@
+/* --- CSS Variables for easy theme management --- */
+:root {
+    --bg-color: #1a1a1a;
+    --card-color: #2a2a2a;
+    --border-color: #444;
+    --text-color: #f0f0f0;
+    --text-muted-color: #aaa;
+    --accent-color: #ffa500; /* LeetCode Orange */
+
+    /* Difficulty Colors */
+    --easy-color: #4caf50;
+    --medium-color: #ffc107;
+    --hard-color: #f44336;
+
+    /* Progress circle percentages (to be updated by JS) */
+    --easy-percent: 0deg;
+    --medium-percent: 0deg;
+    --hard-percent: 0deg;
+}
+
+/* --- General Styles & Resets --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+/* --- Main Container & Header --- */
+.container {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.header p {
+    color: var(--text-muted-color);
+    margin-bottom: 2rem;
+}
+
+/* --- User Input Form --- */
+#user-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2.5rem;
+}
+
+#user-input {
+    flex-grow: 1;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--card-color);
+    color: var(--text-color);
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#user-input::placeholder {
+    color: var(--text-muted-color);
+}
+
+#user-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
+}
+
+#search-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--accent-color);
+    color: #111;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#search-button:hover {
+    background-color: #ffb733;
+    transform: translateY(-2px);
+}
+
+/* --- Stats Container --- */
+.stats-container {
+    background-color: var(--card-color);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+}
+
+.progress-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* --- Progress Cards & Circles --- */
+.progress-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.progress-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    position: relative;
+    background-color: #333; /* Fallback/inner circle color */
+}
+
+/* Using conic-gradient for the progress */
+.easy-progress {
+    background: conic-gradient(var(--easy-color) var(--easy-percent), var(--bg-color) 0deg);
+}
+.medium-progress {
+    background: conic-gradient(var(--medium-color) var(--medium-percent), var(--bg-color) 0deg);
+}
+.hard-progress {
+    background: conic-gradient(var(--hard-color) var(--hard-percent), var(--bg-color) 0deg);
+}
+
+/* Creates the inner circle effect */
+.progress-circle::before {
+    content: "";
+    position: absolute;
+    width: 80%;
+    height: 80%;
+    background: var(--card-color);
+    border-radius: 50%;
+}
+
+.progress-value {
+    position: relative; /* Brings text above the ::before pseudo-element */
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.progress-label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.progress-label .level {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.progress-label .total {
+    font-size: 0.9rem;
+    color: var(--text-muted-color);
+}
+
+/* Specific level colors */
+.easy-progress .progress-value { color: var(--easy-color); }
+.medium-progress .progress-value { color: var(--medium-color); }
+.hard-progress .progress-value { color: var(--hard-color); }
+
+/* --- Detailed Stats Card --- */
+.stats-card {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    background-color: var(--bg-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.stat-item h4 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted-color);
+    margin-bottom: 0.25rem;
+}
+
+.stat-item p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 640px) {
+    body {
+        padding: 1rem;
+    }
+    .header h1 {
+        font-size: 2rem;
+    }
+    .progress-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    .stats-card {
+        grid-template-columns: 1fr;
+        text-align: left;
+        padding: 1rem;
+    }
+    .stat-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 0.5rem;
+    }
+    .stat-item:last-child {
+        border-bottom: none;
+    }
+}
+
+.stats-container {
+    display: none; 
+    background-color: var(--card-color);
+    border-radius: 12px;
+    padding: 2rem;
+    border: 1px solid var(--border-color);
+}

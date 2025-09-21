@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeetMatrix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="container">
+        <header class="header">
+            <h1>LeetMatrix 📊</h1>
+            <p>Your LeetCode stats at a glance</p>
+        </header>
+
+        <section class="user-input-section">
+            <form id="user-form">
+                <input type="text" placeholder="Enter your LeetCode username" id="user-input" required>
+                <button type="submit" id="search-button">Search</button>
+            </form>
+        </section>
+
+        <section class="stats-container" id="stats-container">
+            <div class="progress-grid">
+                <div class="progress-card">
+                    <div class="progress-circle easy-progress">
+                        <span class="progress-value" id="easy-solved">0</span>
+                    </div>
+                    <div class="progress-label">
+                        <span class="level">Easy</span>
+                        <span class="total" id="easy-total">/ 0</span>
+                    </div>
+                </div>
+
+                <div class="progress-card">
+                    <div class="progress-circle medium-progress">
+                        <span class="progress-value" id="medium-solved">0</span>
+                    </div>
+                    <div class="progress-label">
+                        <span class="level">Medium</span>
+                        <span class="total" id="medium-total">/ 0</span>
+                    </div>
+                </div>
+
+                <div class="progress-card">
+                    <div class="progress-circle hard-progress">
+                        <span class="progress-value" id="hard-solved">0</span>
+                    </div>
+                    <div class="progress-label">
+                        <span class="level">Hard</span>
+                        <span class="total" id="hard-total">/ 0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-card">
+                <div class="stat-item">
+                    <h4>Total Solved</h4>
+                    <p id="total-solved">0</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Acceptance Rate</h4>
+                    <p id="acceptance-rate">0%</p>
+                </div>
+                <div class="stat-item">
+                    <h4>Ranking</h4>
+                    <p id="ranking">N/A</p>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
